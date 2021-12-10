@@ -1,0 +1,11 @@
+Let's Split The Bills!
+
+.split_equally
+  should divide the bill equally
+
+.pick_random_num
+  should return an array of random numbers depending on the number of people
+
+Finished in 0.01158 seconds (files took 0.19125 seconds to load)
+2 examples, 0 failures
+

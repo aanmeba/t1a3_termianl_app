@@ -1,0 +1,26 @@
+Let's Split The Bills!
+[6, 5, 7, 6, 2, 6, 5, 0]
+8
+
+.split_equally
+  should divide the bill equally
+
+.pick_random_num
+  should return an array of random numbers depending on the number of people (FAILED - 1)
+
+Failures:
+
+  1) .pick_random_num should return an array of random numbers depending on the number of people
+     Failure/Error: expect(pick_random_num(num).length).to eq(num)
+
+     NoMethodError:
+       undefined method `pick_random_num' for #<RSpec::ExampleGroups::PickRandomNum "should return an array of random numbers depending on the number of people" (./spec/split_bill_spec.rb:14)>
+     # ./spec/split_bill_spec.rb:16:in `block (2 levels) in <top (required)>'
+
+Finished in 0.01046 seconds (files took 0.20507 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/split_bill_spec.rb:14 # .pick_random_num should return an array of random numbers depending on the number of people
+

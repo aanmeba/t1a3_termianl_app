@@ -1,15 +1,11 @@
 # T1A3 - Terminal Application
 
 ## Source Control Repository
-
+[repo](https://github.com/aanmeba/t1a3_termianl_app)
 
 ## Software Development Plan
 
-Develop a statement of purpose and scope for your application. It must include:
-- describe at a high level what the application will do
-- identify the problem it will solve and explain why you are developing it
-- identify the target audience
-- explain how a member of the target audience will use it
+This terminal application is for splitting the bills. 
 
 ## Features
 
@@ -22,7 +18,20 @@ Note: Ensure that your features above allow you to demonstrate your understandin
 - loops and conditional control structures
 - error handling
 
-Consult with your educator to check your features are sufficient .
+--------------------------
+
+## Festures
+- Take inputs, users' names and total amount to split
+- give options, dividing it equally or randomly
+- display the list of names with the amount to owe respectively
+
+## Extra features
+- set a maximum amount for the result for the sake of everyone's financial status...
+
+### Even further...
+- assuming that this app is for a specific cafe, import a menu file including menu names and prices
+- give options whether they want to split the whole bill (that will be the basic app) or just the shared menus (only drinks will be charged individually, and the total of other food will be divided)
+- give options, dividing it equally or randomly
 
 ## User interaction & experience
 

@@ -1,0 +1,27 @@
+Let's Split The Bills!
+[2, 2, 2]
+"sum: 6"
+"each value: 16.0, rest: 2.0"
+"another ran num: 0"
+34.0
+32.0
+[34.0, 32.0, 32.0]
+"total bill: 98.0, total division: 98.0"
+[34.0, 32.0, 32.0]
+
+.split_equally
+  should divide the bill equally
+
+.pick_random_num
+  should return an array of random numbers depending on the number of people
+
+.split_randomly
+[0, 3, 0, 1]
+"sum: 4"
+"each value: 25, rest: 0"
+"total bill: 100, total division: 100"
+  should return an array of randomly split bill
+
+Finished in 0.01874 seconds (files took 0.18125 seconds to load)
+3 examples, 0 failures
+
