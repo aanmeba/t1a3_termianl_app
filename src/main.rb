@@ -1,3 +1,10 @@
+require 'tty-prompt'
+require 'colorize'
+
+prompt = TTY::Prompt.new
+
+String.colors
+String.color_samples
 
 title = "Split The Bills"
 
@@ -19,7 +26,6 @@ while input
     else
         name_array << input
     end
-    return name_array
 end
 
 bill_validation = true
@@ -27,17 +33,19 @@ while bill_validation
     puts "How much of your total bill?"
     bill = gets.chomp.to_f
 
-    puts "Your total bill is #{bill}, is it correct?"
-    yes_no = gets.chomp.downcase
-
+    yes_no = prompt.yes?("Your total bill is #{bill}, is it correct?") do |q|
+        q.required true
+        q.modify   :down
+    end
+    
     case yes_no
-    when "yes", "y"
+    when true
         puts "Alright, let's split the bill."
-        bill_validation = false
-    when "no", "n"
+        bill_validation = false        
+    when false
         puts "Oh, then please enter the correct amount."
     end
-    return bill
+   
 end
 
-puts "bill validation done. let's move on the next step!"
+puts "Choose how you are going to split the bill. R) Random E) Equal"
