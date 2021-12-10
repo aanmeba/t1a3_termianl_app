@@ -19,6 +19,7 @@ while input
     else
         name_array << input
     end
+    return name_array
 end
 
 bill_validation = true
@@ -36,6 +37,7 @@ while bill_validation
     when "no", "n"
         puts "Oh, then please enter the correct amount."
     end
+    return bill
 end
 
 puts "bill validation done. let's move on the next step!"
