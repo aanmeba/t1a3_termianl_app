@@ -2,7 +2,12 @@
     
 # end
 
-# class Calculator
+class Calculator
+
+    def initialize(num, bill)
+        @num = num
+        @bill = bill
+    end
     
     def split_equally(num, bill)
         return bill / num
@@ -47,10 +52,4 @@
     end
 
     pp split_randomly(3, 98.00)
-# end
-
-# temp = rand_array[$random_num]
-# temp += reminder
-# new_array.delete_at($random_num)
-# new_array.insert($random_num, reminder)
-# pp "another random number is #{$random_num}"
+end
