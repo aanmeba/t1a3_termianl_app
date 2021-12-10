@@ -1,8 +1,6 @@
-require_relative '../main'
-require_relative '../methods'
-require 'colorize'
+require_relative '../methods.rb'
 
-describe 'Calculator' do
+# describe 'Calculator' do
 
     # it "should be an instance of a Calculator" do
     #     expect(@test_group).to be_a Group
@@ -12,7 +10,7 @@ describe 'Calculator' do
         it 'should divide the bill equally' do
             total = 100
             num = 4
-            expect(split_equally(num, total)).to be(25)
+            expect(split_equally(num, total)).to eq(25)
         end
     end
 
@@ -30,4 +28,4 @@ describe 'Calculator' do
             expect(split_randomly(num, total).sum).to eq(total)
         end
     end
-end
+# end

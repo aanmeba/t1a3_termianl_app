@@ -1,10 +1,10 @@
-class Calculator
+# class Calculator
 
-    def initialize(array, bill)
-        @array = array
-        @no_of_ppl = @array.length
-        @bill = bill
-    end
+    # def initialize(array, bill)
+    #     @array = array
+    #     @no_of_ppl = @array.length
+    #     @bill = bill
+    # end
     
     def split_equally(num, bill)
         return bill / num
@@ -48,11 +48,19 @@ class Calculator
         return new_array        
     end
 
-    def display(array, value)
+    def display_equally(array, value)
         puts "==========================="
         array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{value.round(2)}"}
         puts "--------------------"
         puts "Total: #{array.length * value}"
         puts "==========================="
     end
-end
+
+    def display_randomly(array1, array2)
+        puts "==========================="
+        array1.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{array2[index].round(2)}"}
+        puts "--------------------"
+        puts "Total: #{array2.sum}"
+        puts "==========================="
+    end
+# end

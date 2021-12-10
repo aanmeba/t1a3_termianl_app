@@ -5,7 +5,6 @@ require_relative './methods'
 prompt = TTY::Prompt.new
 
 title = "Split The Bills".colorize(:light_red)
-# ask_name = "Enter your name".colorize(:light_cyon)
 
 puts "Let's #{title}!"
 puts "Enter your name".colorize(:light_blue)
@@ -51,7 +50,7 @@ calculator_instance = Calculator.new(name_array, bill)
 
 choices = [
         {name: 'I\'m feeling lucky!', value: 1},
-        {name: 'equally', value: 2},
+        {name: 'Equally', value: 2},
         {name: 'Exit', value: 3}
       ]
 
@@ -64,13 +63,20 @@ when 1
         q.modify   :down
     end
 
-    # this going to be into hell....
-    # call the methods...
+    case y_n_input
+    when true
+
+    when false
+        amount_array = calculator_instance.split_randomly(name_array, bill)
+        calculator_instance.display_randomly(name_array, amount_array)
+        exit
+    end
     
 when 2
     puts "Alright, let's split the bill equally..."
-    return_value = calculator_instance.split_equally(name_array.length, bill)
-    calculator_instance.display(name_array, return_value)
+    num = name_array.length
+    return_value = calculator_instance.split_equally(num, bill)
+    calculator_instance.display_equally(name_array, return_value)
     exit
 
 when 3

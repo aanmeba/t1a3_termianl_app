@@ -1,0 +1,17 @@
+
+.split_equally
+  should divide the bill equally
+
+.pick_random_num
+  should return an array of random numbers depending on the number of people
+
+.split_randomly
+[0, 2, 3, 0]
+"sum: 5"
+"each value: 20, rest: 0"
+"total bill: 100, total division: 100"
+  should return an array of randomly split bill
+
+Finished in 0.02508 seconds (files took 0.15974 seconds to load)
+3 examples, 0 failures
+
