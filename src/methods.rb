@@ -1,11 +1,8 @@
-# def options
-    
-# end
-
 class Calculator
 
-    def initialize(num, bill)
-        @num = num
+    def initialize(array, bill)
+        @array = array
+        @no_of_ppl = @array.length
         @bill = bill
     end
     
@@ -51,5 +48,11 @@ class Calculator
         return new_array        
     end
 
-    pp split_randomly(3, 98.00)
+    def display(array, value)
+        puts "==========================="
+        array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{value.round(2)}"}
+        puts "--------------------"
+        puts "Total: #{array.length * value}"
+        puts "==========================="
+    end
 end

@@ -1,22 +1,24 @@
 require 'tty-prompt'
 require 'colorize'
+require_relative './methods'
 
 prompt = TTY::Prompt.new
 
 title = "Split The Bills".colorize(:light_red)
+# ask_name = "Enter your name".colorize(:light_cyon)
 
 puts "Let's #{title}!"
-puts "Enter your name"
+puts "Enter your name".colorize(:light_blue)
 name_array = []
 input = gets.chomp.downcase
 name_array << input
 
 while input
-    puts "Enter names who you are gonna split the bills one by one.\s\nIf you finish it, please type 'done'"
+    puts "Enter names who you are gonna split the bills one by one.\s\nIf you finish it, please type 'done'".colorize(:light_blue)
     input = gets.chomp.downcase
     if input == "done"    
         if name_array.length == 1
-            puts "You should enter one more person."
+            puts "You should enter one more person.".colorize(:light_blue)
         else
             break
         end
@@ -27,10 +29,10 @@ end
 
 bill_validation = true
 while bill_validation
-    puts "How much of your total bill?"
+    puts "How much of your total bill?".colorize(:light_blue)
     bill = gets.chomp.to_f
 
-    yes_no = prompt.yes?("Your total bill is #{bill}, is it correct?") do |q|
+    yes_no = prompt.yes?("Your total bill is #{bill}, is it correct?".colorize(:light_blue)) do |q|
         q.required true
         q.modify   :down
     end
@@ -44,6 +46,8 @@ while bill_validation
     end
    
 end
+
+calculator_instance = Calculator.new(name_array, bill)
 
 choices = [
         {name: 'I\'m feeling lucky!', value: 1},
@@ -65,6 +69,10 @@ when 1
     
 when 2
     puts "Alright, let's split the bill equally..."
+    return_value = calculator_instance.split_equally(name_array.length, bill)
+    calculator_instance.display(name_array, return_value)
+    exit
+
 when 3
-    puts "Exiting application..."
+    puts "Bye for now!"
 end
