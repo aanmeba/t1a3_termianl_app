@@ -3,10 +3,7 @@ require 'colorize'
 
 prompt = TTY::Prompt.new
 
-String.colors
-String.color_samples
-
-title = "Split The Bills"
+title = "Split The Bills".colorize(:light_red)
 
 puts "Let's #{title}!"
 puts "Enter your name"
