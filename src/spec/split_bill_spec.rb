@@ -1,6 +1,6 @@
 require_relative '../methods.rb'
 
-# describe 'Calculator' do
+describe 'Calculator' do
 
     # it "should be an instance of a Calculator" do
     #     expect(@test_group).to be_a Group
@@ -28,4 +28,4 @@ require_relative '../methods.rb'
             expect(split_randomly(num, total).sum).to eq(total)
         end
     end
-# end
+end

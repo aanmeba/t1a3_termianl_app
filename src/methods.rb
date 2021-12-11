@@ -1,10 +1,10 @@
-# class Calculator
+class Calculator
 
-    # def initialize(array, bill)
-    #     @array = array
-    #     @no_of_ppl = @array.length
-    #     @bill = bill
-    # end
+    def initialize(array, bill)
+        @array = array
+        @no_of_ppl = @array.length
+        @bill = bill
+    end
     
     def split_equally(num, bill)
         return bill / num
@@ -17,14 +17,17 @@
 
     def split_randomly(num, bill)
         rand_array = pick_random_num(num)
-        pp rand_array
+
+        # rand_array validation - [0, 0, 0] cause errors
+        if rand_array.each {|item| item == 0}
+            rand_array = pick_random_num(num)
+        end
 
         # if the value is floating number, the final sum will be less than total bill
         sum_rand_array = rand_array.sum
-        pp "sum: #{sum_rand_array}"
-        # each_value = (bill / sum_rand_array).round(1)
+        # pp "sum: #{sum_rand_array}"
+        
         reminder = bill % sum_rand_array
-            # [0,0,0] => error
         each_value = (bill - reminder)/sum_rand_array
         
         pp "each value: #{each_value}, rest: #{reminder}"
@@ -48,6 +51,41 @@
         return new_array        
     end
 
+    def split_manually(array, bill)
+        each_amount = []
+        index = 0
+        while index < array.length
+            puts "#{index+1}. #{array[index]}"
+            each = gets.chomp.to_f          
+            if each <= bill && each >= 0
+                each_amount << each
+                puts "#{array} --- #{each_amount}"
+                puts "#{index} / #{array.length - 1}"
+                puts "Rest: #{bill - each_amount.sum}"
+                index += 1
+            else 
+                puts "Please enter the valid amount"
+                each_amount = []
+                index = 0
+            end
+
+            # validation
+            if index == array.length
+                if each_amount.sum != bill
+                    puts "Pleasse enter the valid amount"
+                    puts "#{index} / #{array.length - 1}"
+                    puts "#{array} --- #{each_amount}"
+                    each_amount = []
+                    index = 0
+                else
+                    puts "check check, #{each_amount}."
+                    break
+                end
+            end
+        end
+        return each_amount
+    end
+
     def display_equally(array, value)
         puts "==========================="
         array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{value.round(2)}"}
@@ -63,4 +101,4 @@
         puts "Total: #{array2.sum}"
         puts "==========================="
     end
-# end
+end
