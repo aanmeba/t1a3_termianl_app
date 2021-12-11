@@ -23,31 +23,26 @@ class Calculator
             rand_array = pick_random_num(num)
         end
 
-        # if the value is floating number, the final sum will be less than total bill
-        sum_rand_array = rand_array.sum
-        # pp "sum: #{sum_rand_array}"
-        
+        sum_rand_array = rand_array.sum        
         reminder = bill % sum_rand_array
+
+        # if there is a reminder, subtract it from the bill then calculate the rest
         each_value = (bill - reminder)/sum_rand_array
-        
-        pp "each value: #{each_value}, rest: #{reminder}"
-        
+
+        # generate a new array including split values
         new_array = rand_array.map {|i| 
             i * each_value.round(1) 
         }
 
+        # if there is a reminder, pick another random number 
+        # then add the reminder to the corresponding index of the new array
         if reminder != 0.0
             another_ran_num = rand(0..num-1)
-            pp "another ran num: #{another_ran_num}"
             temp = new_array[another_ran_num]
             temp += reminder
-            pp temp
-            pp new_array.delete_at(another_ran_num)
-            pp new_array.insert(another_ran_num, temp)
-        end
-
-        pp "total bill: #{bill}, total division: #{new_array.sum}"
-                
+            new_array.delete_at(another_ran_num)
+            new_array.insert(another_ran_num, temp)
+        end                
         return new_array        
     end
 
@@ -59,8 +54,6 @@ class Calculator
             each = gets.chomp.to_f          
             if each <= bill && each >= 0
                 each_amount << each
-                puts "#{array} --- #{each_amount}"
-                puts "#{index} / #{array.length - 1}"
                 puts "Rest: #{bill - each_amount.sum}"
                 index += 1
             else 
@@ -73,8 +66,6 @@ class Calculator
             if index == array.length
                 if each_amount.sum != bill
                     puts "Pleasse enter the valid amount"
-                    puts "#{index} / #{array.length - 1}"
-                    puts "#{array} --- #{each_amount}"
                     each_amount = []
                     index = 0
                 else
@@ -94,7 +85,7 @@ class Calculator
         puts "==========================="
     end
 
-    def display_randomly(array1, array2)
+    def display_randomly_manually(array1, array2)
         puts "==========================="
         array1.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{array2[index].round(2)}"}
         puts "--------------------"

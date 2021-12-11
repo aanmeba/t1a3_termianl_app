@@ -6,6 +6,7 @@ prompt = TTY::Prompt.new
 
 title = "Split The Bills".colorize(:light_red)
 
+system('clear')
 puts "Let's #{title}!"
 puts "Enter your name".colorize(:light_blue)
 name_array = []
@@ -13,6 +14,7 @@ input = gets.chomp.downcase
 name_array << input
 
 while input
+    system('clear')
     puts "Enter names who you are gonna split the bills one by one.\s\nIf you finish it, please type 'done'".colorize(:light_blue)
     input = gets.chomp.downcase
     if input == "done"    
@@ -30,6 +32,7 @@ end
 
 bill_validation = true
 while bill_validation
+    system('clear')
     puts "Enter the total amount".colorize(:light_blue)
     bill = gets.chomp.to_f
 
@@ -48,6 +51,7 @@ while bill_validation
    
 end
 
+system('clear')
 calculator_instance = Calculator.new(name_array, bill)
 
 choices = [
@@ -74,7 +78,7 @@ when 1
 
     # when false
         amount_array = calculator_instance.split_randomly(num, bill)
-        calculator_instance.display_randomly(name_array, amount_array)
+        calculator_instance.display_randomly_manually(name_array, amount_array)
         exit
     # end
     
@@ -86,9 +90,8 @@ when 2
     exit
 when 3
     manual_return = calculator_instance.split_manually(name_array, bill)
-    manual_return.each_with_index {|amount, index|
-        puts "#{index+1}. #{name_array[index]}: #{amount}"
-    }
+    calculator_instance.display_randomly_manually(name_array, manual_return)
+    exit
 
 when 4
     puts "Bye for now!"
