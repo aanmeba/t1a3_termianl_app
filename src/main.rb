@@ -74,7 +74,7 @@ system('clear')
 calculator_instance = Calculator.new(name_array, bill)
 
 choices = [
-        {name: 'I\'m feeling lucky!', value: 1},
+        {name: 'Randomly', value: 1},
         {name: 'Equally', value: 2},
         {name: 'Manually', value: 3},
         {name: 'Exit', value: 4}
@@ -94,8 +94,8 @@ when 1
 when 2
     puts "Alright, let's split the bill equally..."
     
-    return_value = calculator_instance.split_equally(num, bill)
-    calculator_instance.display_equally(name_array, return_value)
+    result_array = calculator_instance.split_equally(num, bill)
+    calculator_instance.display_randomly_manually(name_array, result_array)
     exit
 when 3
     manual_return = calculator_instance.split_manually(name_array, bill)

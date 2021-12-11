@@ -11,7 +11,28 @@ class Calculator
     end
     
     def split_equally(num, bill)
-        return bill / num
+        # reminder = bill % num
+        # if reminder == 0.0
+        #     result = bill / num
+        #     return result
+        # else
+        #     reminder % num
+        result_array = []
+        each_amount = (bill / num).round(2)
+        i = 0
+            while i < num
+                result_array << each_amount
+                i += 1    
+            end
+            
+        if (each_amount * num) != bill
+            leftover = bill - (each_amount * num)
+            ran_num = rand(0..num-1)
+            result_array[ran_num] += leftover
+            # temp += leftover
+        end            
+            
+        return result_array
     end
 
     def pick_random_num(num)
@@ -42,10 +63,10 @@ class Calculator
         # then add the reminder to the corresponding index of the new array
         if reminder != 0.0
             another_ran_num = rand(0..num-1)
-            temp = new_array[another_ran_num]
-            temp += reminder
-            new_array.delete_at(another_ran_num)
-            new_array.insert(another_ran_num, temp)
+            new_array[another_ran_num] += reminder
+            # temp += reminder
+            # new_array.delete_at(another_ran_num)
+            # new_array.insert(another_ran_num, temp)
         end                
         return new_array        
     end
