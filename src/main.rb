@@ -2,21 +2,34 @@ require 'tty-prompt'
 require 'colorize'
 require_relative './methods'
 
+system('clear')
 prompt = TTY::Prompt.new
 
 title = "Split The Bills".colorize(:light_red)
 
-system('clear')
 puts "Let's #{title}!"
-puts "Enter your name".colorize(:light_blue)
+# puts "Enter your name".colorize(:light_blue)
 name_array = []
-input = gets.chomp.downcase
+# input = gets.chomp.downcase
+input = prompt.ask("Enter your name".colorize(:light_blue), required: true) do |q|
+    q.validate(/^[A-Za-z ]*$/)
+    q.messages[:valid?] = "Please enter only alphabetical letters"
+    q.modify :chomp, :down
+end
+
 name_array << input
 
+system('clear')
+# puts "If you finish it, please type 'done'".colorize(:light_blue)
+
 while input
-    system('clear')
-    puts "Enter names who you are gonna split the bills one by one.\s\nIf you finish it, please type 'done'".colorize(:light_blue)
-    input = gets.chomp.downcase
+    
+    input = prompt.ask("Enter other names one by one.\s\nPlease type 'done' when you finish it".colorize(:light_blue), required: true) do |q|
+        q.validate(/^[A-Za-z ]*$/)
+        q.messages[:valid?] = "Please enter only alphabetical letters"
+        q.modify :chomp, :down
+    end
+
     if input == "done"    
         if name_array.length == 1
             # puts "You should enter one more person.".colorize(:light_blue)
@@ -33,8 +46,13 @@ end
 bill_validation = true
 while bill_validation
     system('clear')
-    puts "Enter the total amount".colorize(:light_blue)
-    bill = gets.chomp.to_f
+
+    bill = prompt.ask("Enter the total amount".colorize(:light_blue), required: true, convert: :float) do |q|
+        q.validate(/^[1-9]+[0-9]*$/)
+        q.messages[:valid?] = "Please provide positive numbers"
+        q.modify :chomp
+        q.messages[:convert?] = "Please provide positive numbers"
+    end
 
     yes_no = prompt.yes?("The total amount is #{bill}, is it correct?".colorize(:light_blue)) do |q|
         q.required true
@@ -48,7 +66,7 @@ while bill_validation
     when false
         puts "Please enter the correct amount."
     end
-   
+    
 end
 
 system('clear')
@@ -67,21 +85,10 @@ num = name_array.length
 
 case user_input
 when 1
-    # y_n_input = prompt.yes?("Would you like to set a maximum amount for each person?") do |q|
-    #     q.required true
-    #     q.modify   :down
-    # end
+    amount_array = calculator_instance.split_randomly(num, bill)
+    calculator_instance.display_randomly_manually(name_array, amount_array)
+    exit
 
-    # case y_n_input
-    # when true
-    #     maximum = get.chomp.to_f
-
-    # when false
-        amount_array = calculator_instance.split_randomly(num, bill)
-        calculator_instance.display_randomly_manually(name_array, amount_array)
-        exit
-    # end
-    
 when 2
     puts "Alright, let's split the bill equally..."
     

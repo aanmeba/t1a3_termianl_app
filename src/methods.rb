@@ -54,7 +54,9 @@ class Calculator
             each = gets.chomp.to_f          
             if each <= bill && each >= 0
                 each_amount << each
-                puts "Rest: #{bill - each_amount.sum}"
+                rest = (bill - each_amount.sum).round(2)
+                puts "#{index} / #{array.length - 1}"
+                puts "Rest: #{rest}"
                 index += 1
             else 
                 puts "Please enter the valid amount"
@@ -62,17 +64,21 @@ class Calculator
                 index = 0
             end
 
-            # validation
-            if index == array.length
-                if each_amount.sum != bill
-                    puts "Pleasse enter the valid amount"
-                    each_amount = []
-                    index = 0
-                else
-                    puts "check check, #{each_amount}."
-                    break
-                end
+            if index == array.length - 1
+                each_amount << rest
+                break
             end
+            # validation
+            # if index == array.length
+            #     if each_amount.sum != bill
+            #         puts "Pleasse enter the valid amount"
+            #         each_amount = []
+            #         index = 0
+            #     else
+            #         puts "check check, #{each_amount}."
+            #         break
+            #     end
+            # end
         end
         return each_amount
     end
