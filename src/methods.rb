@@ -1,3 +1,7 @@
+
+require 'tty-prompt'
+
+
 class Calculator
 
     def initialize(array, bill)
@@ -49,9 +53,23 @@ class Calculator
     def split_manually(array, bill)
         each_amount = []
         index = 0
+        
+        prompt = TTY::Prompt.new
+
         while index < array.length
-            puts "#{index+1}. #{array[index]}"
-            each = gets.chomp.to_f          
+
+            puts "Total amount: #{bill}"
+            each = prompt.ask("How much is #{array[index].capitalize} going to pay?".colorize(:light_blue), required: true, convert: :float) do |q|
+                q.validate(/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/)
+                q.messages[:valid?] = "Please provide positive numbers"
+                q.modify :chomp
+                q.messages[:convert?] = "Please provide positive numbers"
+            end
+
+            each = each.round(2)
+
+            # puts "#{index+1}. #{array[index]}"
+            # each = gets.chomp.to_f          
             if each <= bill && each >= 0
                 each_amount << each
                 rest = (bill - each_amount.sum).round(2)
@@ -85,7 +103,7 @@ class Calculator
 
     def display_equally(array, value)
         puts "==========================="
-        array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{value.round(2)}"}
+        array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{value.round(3)}"}
         puts "--------------------"
         puts "Total: #{array.length * value}"
         puts "==========================="
@@ -95,7 +113,7 @@ class Calculator
         puts "==========================="
         array1.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{array2[index].round(2)}"}
         puts "--------------------"
-        puts "Total: #{array2.sum}"
+        puts "Total: #{array2.sum.round(2)}"
         puts "==========================="
     end
 end

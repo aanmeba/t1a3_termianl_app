@@ -48,11 +48,13 @@ while bill_validation
     system('clear')
 
     bill = prompt.ask("Enter the total amount".colorize(:light_blue), required: true, convert: :float) do |q|
-        q.validate(/^[1-9]+[0-9]*$/)
+        q.validate(/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/)
         q.messages[:valid?] = "Please provide positive numbers"
         q.modify :chomp
         q.messages[:convert?] = "Please provide positive numbers"
     end
+
+    bill = bill.round(2)
 
     yes_no = prompt.yes?("The total amount is #{bill}, is it correct?".colorize(:light_blue)) do |q|
         q.required true
@@ -61,7 +63,6 @@ while bill_validation
     
     case yes_no
     when true
-        puts "Alright, let's split the bill."
         bill_validation = false        
     when false
         puts "Please enter the correct amount."
@@ -81,6 +82,7 @@ choices = [
 
 user_input = prompt.select("Choose how you are going to split the bill.", choices)
 
+system('clear')
 num = name_array.length
 
 case user_input
