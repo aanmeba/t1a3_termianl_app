@@ -94,8 +94,26 @@ class Calculator
 
             if index == @no_of_ppl - 1
                 each_amount << rest
-                break
+
+                # confirm the input amount is correct
+                # otherwise, start it over
+                each_amount.each_with_index do |amount, i|
+                    puts "#{i+1}. #{@array[i]}: #{amount}"
+                end
+                yes_no_manually = prompt.yes?("Are you happy with it?".colorize(:light_blue)) do |q|
+                q.required true
+                q.modify   :down
+                end
+
+                case yes_no_manually
+                when true
+                    break
+                when false
+                    each_amount = []
+                    index = 0
+                end
             end
+            
         end
         return each_amount
     end
