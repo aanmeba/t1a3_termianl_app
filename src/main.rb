@@ -2,6 +2,10 @@ require 'tty-prompt'
 require 'colorize'
 require_relative './methods'
 
+
+test_array = ["Amy", "Brian", "Charlie"]
+test_bill = 100
+
 system('clear')
 prompt = TTY::Prompt.new
 
@@ -48,7 +52,7 @@ while bill_validation
     system('clear')
 
     bill = prompt.ask("Enter the total amount".colorize(:light_blue), required: true, convert: :float) do |q|
-        q.validate(/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/)
+        q.validate(/^(?:[1-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
         q.messages[:valid?] = "Please provide positive numbers"
         q.modify :chomp
         q.messages[:convert?] = "Please provide positive numbers"
@@ -83,23 +87,22 @@ choices = [
 user_input = prompt.select("Choose how you are going to split the bill.", choices)
 
 system('clear')
-num = name_array.length
 
 case user_input
 when 1
-    amount_array = calculator_instance.split_randomly(num, bill)
-    calculator_instance.display_randomly_manually(name_array, amount_array)
+    amount_array = calculator_instance.split_randomly
+    calculator_instance.display(amount_array)
     exit
 
 when 2
     puts "Alright, let's split the bill equally..."
     
-    result_array = calculator_instance.split_equally(num, bill)
-    calculator_instance.display_randomly_manually(name_array, result_array)
+    result_array = calculator_instance.split_equally
+    calculator_instance.display(result_array)
     exit
 when 3
-    manual_return = calculator_instance.split_manually(name_array, bill)
-    calculator_instance.display_randomly_manually(name_array, manual_return)
+    manual_return = calculator_instance.split_manually
+    calculator_instance.display(manual_return)
     exit
 
 when 4

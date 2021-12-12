@@ -1,10 +1,23 @@
-require_relative '../methods.rb'
+require_relative '../methods'
+require_relative '../main'
 
 describe 'Calculator' do
 
-    # it "should be an instance of a Calculator" do
-    #     expect(@test_group).to be_a Group
-    # end
+    before(:each) do
+        @test_name = Calculator.new(test_array, test_bill)
+    end
+
+    it 'should be an instance of a Calculator' do
+        expect(@test_name).to be_a Calculator
+    end
+
+    it 'should have a array property' do
+        expect(@test_name.array).to eq(test_array)
+    end
+
+    it 'should have an array of names' do
+        expect(@test_name.array).to be_an_istance_of(Array)
+    end
 
     describe '.split_equally' do
         it 'should divide the bill equally' do
