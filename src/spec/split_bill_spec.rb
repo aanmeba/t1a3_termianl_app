@@ -1,9 +1,11 @@
 require_relative '../methods'
-require_relative '../main'
+# require_relative '../main'
 
 describe 'Calculator' do
 
     before(:each) do
+        test_array = ["Amy", "Brian", "Charlie"]
+        test_bill = 100
         @test_name = Calculator.new(test_array, test_bill)
     end
 
@@ -11,34 +13,63 @@ describe 'Calculator' do
         expect(@test_name).to be_a Calculator
     end
 
-    it 'should have a array property' do
-        expect(@test_name.array).to eq(test_array)
+    it 'should have an array property' do
+        expect(@test_name.array[1]).to eq("Brian")
     end
 
-    it 'should have an array of names' do
-        expect(@test_name.array).to be_an_istance_of(Array)
+    it 'should have an instance variable for the length of an array' do
+        expect(@test_name.no_of_ppl).to be(3)
+    end
+
+    it 'should have an instance variable for bill' do
+        expect(@test_name.bill).to be(100)
     end
 
     describe '.split_equally' do
-        it 'should divide the bill equally' do
-            total = 100
-            num = 4
-            expect(split_equally(num, total)).to eq(25)
+        it 'should be difined' do
+            expect(defined? @test_name.split_equally).to eq("method")
+        end
+
+        it 'should return an array' do
+            expect(@test_name.split_equally).to be_an_instance_of(Array)
         end
     end
 
     describe '.pick_random_num' do
+        it 'should be difined' do
+            expect(defined? @test_name.pick_random_num).to eq("method")
+        end
+
+        it 'should return an array' do
+            expect(@test_name.pick_random_num).to be_an_instance_of(Array)
+        end
+
         it 'should return an array of random numbers depending on the number of people' do
-            num = 8
-            expect(pick_random_num(num).length).to eq(num)
+            expect(@test_name.pick_random_num.length).to eq(3)
         end
     end
 
     describe '.split_randomly' do
-        it 'should return an array of randomly split bill' do
-            num = 4
-            total = 100
-            expect(split_randomly(num, total).sum).to eq(total)
+        it 'should be difined' do
+            expect(defined? @test_name.split_randomly).to eq("method")
+        end
+
+        it 'should return an array' do
+            expect(@test_name.split_randomly).to be_an_instance_of(Array)
+        end
+
+        it 'should be equal between the sum of the array and the bill amount' do
+            expect(@test_name.split_randomly.sum).to eq(100)
+        end
+    end
+
+    describe '.split_manually' do
+        it 'should be difined' do
+            expect(defined? @test_name.split_manually).to eq("method")
+        end
+
+        it 'should return an array' do
+            expect(@test_name.split_manually).to be_an_instance_of(Array)
         end
     end
 end

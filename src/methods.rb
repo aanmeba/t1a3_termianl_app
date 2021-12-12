@@ -4,7 +4,7 @@ require 'tty-prompt'
 
 class Calculator
     attr_reader :array, :no_of_ppl, :bill
-    
+
     def initialize(array, bill)
         @array = array
         @no_of_ppl = @array.length
@@ -72,7 +72,7 @@ class Calculator
         while index < @no_of_ppl
 
             puts "Total amount: #{@bill} | Number of people: #{index+1} / #{@no_of_ppl - 1}"
-            each = prompt.ask("How much is #{@array[index].capitalize} going to pay?".colorize(:light_blue), required: true, convert: :float) do |q|
+            each = prompt.ask("How much is #{@array[index].capitalize} going to pay?", required: true, convert: :float) do |q|
                 q.validate(/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/)
                 q.messages[:valid?] = "Please provide positive numbers"
                 q.modify :chomp

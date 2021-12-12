@@ -1,0 +1,32 @@
+
+Calculator
+  should be an instance of a Calculator
+  should have an array property
+  should have an instance variable for the length of an array
+  should have an instance variable for bill
+  .split_equally
+    should be difined
+    should return an array
+  .pick_random_num
+    should be difined
+    should return an array
+    should return an array of random numbers depending on the number of people
+  .split_randomly
+    should be difined
+    should return an array
+    should be equal between the sum of the array and the bill amount
+  .split_manually
+    should be difined
+Total amount: 100 | Number of people: 1 / 2
+How much is Amy going to pay? [2K[1GHow much is Amy going to pay? 5[2K[1GHow much is Amy going to pay? 5
+[1A[2K[1GHow much is Amy going to pay? [32m5[0m
+Rest: 95.0
+Total amount: 100 | Number of people: 2 / 2
+How much is Brian going to pay? [2K[1GHow much is Brian going to pay? 5[2K[1GHow much is Brian going to pay? 5
+[1A[2K[1GHow much is Brian going to pay? [32m5[0m
+Rest: 90.0
+    should return an array
+
+Finished in 16.97 seconds (files took 0.26057 seconds to load)
+14 examples, 0 failures
+

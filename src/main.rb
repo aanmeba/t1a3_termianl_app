@@ -3,9 +3,6 @@ require 'colorize'
 require_relative './methods'
 
 
-test_array = ["Amy", "Brian", "Charlie"]
-test_bill = 100
-
 system('clear')
 prompt = TTY::Prompt.new
 
