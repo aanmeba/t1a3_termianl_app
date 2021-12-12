@@ -71,40 +71,51 @@ class Calculator
 
         while index < @no_of_ppl
 
-            puts "Total amount: #{@bill} | Number of people: #{index+1} / #{@no_of_ppl - 1}"
-            each = prompt.ask("How much is #{@array[index].capitalize} going to pay?", required: true, convert: :float) do |q|
-                q.validate(/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/)
+            puts "Total amount: #{@bill} | Number of people: #{index+1} / #{@no_of_ppl}"
+            puts "----------------------------------------------".colorize($highlight)
+            
+            each = prompt.ask("How much is " + "#{@array[index].capitalize}".colorize($instruction) + " going to pay?", required: true, convert: :float) do |q|
+                q.validate(/^(?:[0-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
                 q.messages[:valid?] = "Please provide positive numbers"
                 q.modify :chomp
                 q.messages[:convert?] = "Please provide positive numbers"
             end
+            system('clear')
 
             each = each.round(2)
-    
-            if each <= @bill && each >= 0
+        
+            if (each_amount.sum + each) <= @bill 
                 each_amount << each
                 rest = (@bill - each_amount.sum).round(2)
+
+                system('clear')
                 puts "Rest: #{rest}"
                 index += 1
             else 
-                puts "Please enter the valid amount"
+                system('clear')
+                puts $err_msg + " Please enter the valid amount"
                 each_amount = []
                 index = 0
             end
 
-            if index == @no_of_ppl - 1
+            if index == (@no_of_ppl - 1) || rest == 0.0
                 each_amount << rest
-
-                # confirm the input amount is correct
-                # otherwise, start it over
-                each_amount.each_with_index do |amount, i|
-                    puts "#{i+1}. #{@array[i]}: #{amount}"
+                while each_amount.length != @no_of_ppl
+                    each_amount << rest
                 end
-                yes_no_manually = prompt.yes?("Are you happy with it?".colorize(:light_blue)) do |q|
+
+                system('clear')
+                # confirm the input amount is correct. Otherwise, start it over
+                each_amount.each_with_index do |amount, i|
+                    puts "#{i+1}. #{@array[i].capitalize}: #{amount}"
+                end
+
+                yes_no_manually = prompt.yes?("Are you happy with it?") do |q|
                 q.required true
                 q.modify   :down
                 end
 
+                system('clear')
                 case yes_no_manually
                 when true
                     break
@@ -119,10 +130,10 @@ class Calculator
     end
 
     def display(result_array)
-        puts "==========================="
+        puts "===========================".colorize($instruction)
         @array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{result_array[index].round(2)}"}
-        puts "--------------------"
+        puts "---------------------------".colorize($highlight)
         puts "Total: #{result_array.sum.round(2)}"
-        puts "==========================="
+        puts "===========================".colorize($instruction)
     end
 end

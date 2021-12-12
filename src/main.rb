@@ -2,34 +2,33 @@ require 'tty-prompt'
 require 'colorize'
 require_relative './methods'
 
+# colour variables
+$instruction = :light_blue
+$highlight = :light_red
+$seperater = :light_green
+
 prompt = TTY::Prompt.new
 
-title = "Split The Bills".colorize(:light_red)
+title = "Split The Bills"
+puts " Let's #{title}! ".colorize(:black).on_light_blue
 
-puts "Let's #{title}!"
-# puts "Enter your name".colorize(:light_blue)
 name_array = []
-# input = gets.chomp.downcase
-input = prompt.ask("Enter your name", required: true) do |q|
-    q.validate(/^[A-Za-z ]*$/)
-    q.messages[:valid?] = "Please enter only alphabetical letters"
-    q.modify :chomp, :down
-end
+input = ""
 
-name_array << input
+puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize($instruction) + "when you finish."
 
-puts "Please " + "type 'done' ".colorize(:light_blue) + "when you finish it"
+$err_msg = ">>".colorize($highlight)
 
 while input
-    input = prompt.ask("Enter other names one by one.", required: true) do |q|
+    input = prompt.ask("Name:", required: true) do |q|
         q.validate(/^[A-Za-z ]*$/)
         q.messages[:valid?] = "Please enter only alphabetical letters"
         q.modify :chomp, :down
     end
 
     if input == "done"    
-        if name_array.length == 1
-            prompt.warn("You should enter one more person.")
+        if name_array.length <= 1
+            puts $err_msg + " You should provide more than two people"
         else
             break
         end
@@ -43,7 +42,7 @@ bill_validation = true
 while bill_validation
     system('clear')
 
-    bill = prompt.ask("Enter the total amount".colorize(:light_blue), required: true, convert: :float) do |q|
+    bill = prompt.ask("Enter the total amount", required: true, convert: :float) do |q|
         q.validate(/^(?:[1-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
         q.messages[:valid?] = "Please provide positive numbers"
         q.modify :chomp
@@ -52,7 +51,7 @@ while bill_validation
 
     bill = bill.round(2)
 
-    yes_no = prompt.yes?("The total amount is #{bill}, is it correct?".colorize(:light_blue)) do |q|
+    yes_no = prompt.yes?("The total amount is " + "#{bill}".colorize($instruction) + ", is it correct?") do |q|
         q.required true
         q.modify   :down
     end
@@ -60,10 +59,7 @@ while bill_validation
     case yes_no
     when true
         bill_validation = false        
-    when false
-        puts "Please enter the correct amount."
     end
-    
 end
 
 system('clear')
@@ -86,12 +82,11 @@ when 1
     calculator_instance.display(amount_array)
     exit
 
-when 2
-    puts "Alright, let's split the bill equally..."
-    
+when 2    
     result_array = calculator_instance.split_equally
     calculator_instance.display(result_array)
     exit
+
 when 3
     manual_return = calculator_instance.split_manually
     calculator_instance.display(manual_return)
