@@ -2,8 +2,6 @@ require 'tty-prompt'
 require 'colorize'
 require_relative './methods'
 
-
-system('clear')
 prompt = TTY::Prompt.new
 
 title = "Split The Bills".colorize(:light_red)
@@ -12,7 +10,7 @@ puts "Let's #{title}!"
 # puts "Enter your name".colorize(:light_blue)
 name_array = []
 # input = gets.chomp.downcase
-input = prompt.ask("Enter your name".colorize(:light_blue), required: true) do |q|
+input = prompt.ask("Enter your name", required: true) do |q|
     q.validate(/^[A-Za-z ]*$/)
     q.messages[:valid?] = "Please enter only alphabetical letters"
     q.modify :chomp, :down
@@ -20,12 +18,10 @@ end
 
 name_array << input
 
-system('clear')
-# puts "If you finish it, please type 'done'".colorize(:light_blue)
+puts "Please " + "type 'done' ".colorize(:light_blue) + "when you finish it"
 
 while input
-    
-    input = prompt.ask("Enter other names one by one.\s\nPlease type 'done' when you finish it".colorize(:light_blue), required: true) do |q|
+    input = prompt.ask("Enter other names one by one.", required: true) do |q|
         q.validate(/^[A-Za-z ]*$/)
         q.messages[:valid?] = "Please enter only alphabetical letters"
         q.modify :chomp, :down
@@ -33,7 +29,6 @@ while input
 
     if input == "done"    
         if name_array.length == 1
-            # puts "You should enter one more person.".colorize(:light_blue)
             prompt.warn("You should enter one more person.")
         else
             break
