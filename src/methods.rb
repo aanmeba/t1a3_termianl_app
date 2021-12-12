@@ -36,16 +36,22 @@ class Calculator
     end   
 
     def split_randomly
-        rand_array = self.pick_random_num
-
-        # rand_array validation - [0, 0, 0] cause errors
-        if rand_array.each {|item| item == 0}
+        
+        # error handling - when pick_random_num returns all the elements are 0 in an array
+        begin
             rand_array = self.pick_random_num
-        end
 
-        sum_rand_array = rand_array.sum        
-        reminder = @bill % sum_rand_array
+            # rand_array validation - [0, 0, 0] cause errors
+            # if rand_array.each {|item| item == 0}
+            #     rand_array = self.pick_random_num
+            # end
 
+            sum_rand_array = rand_array.sum      
+            reminder = @bill % sum_rand_array    
+        rescue ZeroDivisionError
+            retry
+        end  
+        
         # if there is a reminder, subtract it from the bill then calculate the rest
         each_value = (@bill - reminder)/sum_rand_array
 
@@ -124,7 +130,6 @@ class Calculator
                     index = 0
                 end
             end
-            
         end
         return each_amount
     end
