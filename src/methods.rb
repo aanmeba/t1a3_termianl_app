@@ -1,8 +1,6 @@
 
 # Class containing calculation methods
 class Calculator
-    attr_reader :array, :no_of_ppl, :bill
-
     # First param will be a name array that user input
     def initialize(array, bill, title)
         @array = array
