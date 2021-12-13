@@ -44,8 +44,11 @@ This accepts the user input manually to share the amount. Since it takes user in
 When the last person left after entering the amount for each, it automatically calculates the rest and allocates it to the last person, and then displays the result on the screen. 
 
 
-## User interaction & experience
+## User Interaction & Experience
 
+Typing '-help' or '-info' in the command line when executing this application displays further information to use it. Users can enter names and amounts following the instruction then select an option using the arrow keys. 
+
+------------------------------
 Develop an outline of the user interaction and experience for the application.
 Your outline must include:
 - how the user will find out how to interact with / use each feature
@@ -60,10 +63,7 @@ argv - 앱을 실행할 때 command line으로 -help와 -info를 사용해 정�
 방향키로 원하는 메뉴를 선택할 수 있음. 
 
 input validation을 통해 invalid 값을 입력하면 오류메시지가 표시되고 다시 입력할 수 있음.
-
 --------------------------
-
-Typing '-help' or '-info' in the command line when executing this application displays further information to use it. Users can enter names and amounts following the instruction then select an option using the arrow keys. 
 
 
 ## Control flow
@@ -82,6 +82,9 @@ Develop an implementation plan which:
 Utilise a suitable project management platform to track this implementation plan
 
 > Your checklists for each feature should have at least 5 items.
+
+https://trello.com/b/l7Rq2BOL/t1a3-terminal-app
+
 
 ## How to install and use
 
