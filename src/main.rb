@@ -1,11 +1,12 @@
 require 'tty-prompt'
 require 'colorize'
 require_relative './methods'
+require_relative './command-line-arg'
 
 # colour variables
 $instruction = :light_blue
 $highlight = :light_red
-$seperater = :light_green
+$err_msg = ">>".colorize($highlight)
 
 prompt = TTY::Prompt.new
 
@@ -16,8 +17,6 @@ name_array = []
 input = ""
 
 puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize($instruction) + "when you finish."
-
-$err_msg = ">>".colorize($highlight)
 
 while input
     input = prompt.ask("Name:", required: true) do |q|
@@ -48,7 +47,6 @@ while bill_validation
         q.modify :chomp
         q.messages[:convert?] = "Please provide positive numbers"
     end
-
     bill = bill.round(2)
 
     yes_no = prompt.yes?("The total amount is " + "#{bill}".colorize($instruction) + ", is it correct?") do |q|
@@ -71,7 +69,6 @@ choices = [
         {name: 'Manually', value: 3},
         {name: 'Exit', value: 4}
       ]
-
 user_input = prompt.select("Choose how you are going to split the bill.", choices)
 
 system('clear')
@@ -81,17 +78,14 @@ when 1
     amount_array = calculator_instance.split_randomly
     calculator_instance.display(amount_array)
     exit
-
 when 2    
     result_array = calculator_instance.split_equally
     calculator_instance.display(result_array)
     exit
-
 when 3
     manual_return = calculator_instance.split_manually
     calculator_instance.display(manual_return)
     exit
-
 when 4
     puts "Bye for now!"
 end

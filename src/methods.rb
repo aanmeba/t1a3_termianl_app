@@ -1,6 +1,4 @@
-
 require 'tty-prompt'
-
 
 class Calculator
     attr_reader :array, :no_of_ppl, :bill
@@ -18,15 +16,13 @@ class Calculator
             while i < @no_of_ppl
                 result_array << each_amount
                 i += 1    
-            end
-            
+            end            
         if (each_amount * @no_of_ppl) != @bill
             leftover = @bill - (each_amount * @no_of_ppl)
             ran_num = rand(0..@no_of_ppl-1)
             result_array[ran_num] += leftover
             # temp += leftover
-        end            
-            
+        end                        
         return result_array
     end
 
@@ -35,36 +31,33 @@ class Calculator
         return rand_array
     end   
 
-    def split_randomly
-        
+    def split_randomly        
         # error handling - when pick_random_num returns all the elements are 0 in an array
         begin
             rand_array = self.pick_random_num
-
             # rand_array validation - [0, 0, 0] cause errors
             # if rand_array.each {|item| item == 0}
             #     rand_array = self.pick_random_num
             # end
-
             sum_rand_array = rand_array.sum      
-            reminder = @bill % sum_rand_array    
+            remainder = @bill % sum_rand_array    
         rescue ZeroDivisionError
             retry
         end  
         
-        # if there is a reminder, subtract it from the bill then calculate the rest
-        each_value = (@bill - reminder)/sum_rand_array
+        # if there is a remainder, subtract it from the bill then calculate the rest
+        each_value = (@bill - remainder)/sum_rand_array
 
         # generate a new array including split values
         new_array = rand_array.map {|i| 
             i * each_value.round(1) 
         }
 
-        # if there is a reminder, pick another random number 
-        # then add the reminder to the corresponding index of the new array
-        if reminder != 0.0
+        # if there is a remainder, pick another random number 
+        # then add the remainder to the corresponding index of the new array
+        if remainder != 0.0
             another_ran_num = rand(0..@no_of_ppl-1)
-            new_array[another_ran_num] += reminder
+            new_array[another_ran_num] += remainder
         end                
         return new_array        
     end
@@ -76,7 +69,6 @@ class Calculator
         prompt = TTY::Prompt.new
 
         while index < @no_of_ppl
-
             puts "Total amount: #{@bill} | Number of people: #{index+1} / #{@no_of_ppl}"
             puts "----------------------------------------------".colorize($highlight)
             
@@ -86,8 +78,8 @@ class Calculator
                 q.modify :chomp
                 q.messages[:convert?] = "Please provide positive numbers"
             end
+            
             system('clear')
-
             each = each.round(2)
         
             if (each_amount.sum + each) <= @bill 
