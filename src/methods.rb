@@ -105,17 +105,13 @@ class Calculator
                 q.messages[:convert?] = "Please provide positive numbers"
             end
             each = each.round(2)
-            pp each 
+
             # Input validation
             # If user enter an amount that is above the total bill, it restarts
             if (each_amount.sum + each) <= @bill 
                 each_amount << each
                 rest = (@bill - each_amount.sum).round(2)
                 error_message = false
-
-                pp each_amount
-                pp each
-
                 index += 1
             else 
                 # A user enters invalid input
@@ -124,9 +120,6 @@ class Calculator
                 each_amount = []
                 index = 0
                 rest = ""
-
-                pp each_amount
-                pp each
             end
 
             # Result validation
@@ -141,8 +134,7 @@ class Calculator
                 while each_amount.size != @no_of_ppl
                     each_amount << rest
                 end
-                pp "rest: #{rest}"
-                pp "each amout array: #{each_amount}"
+                
                 heading(@title)
                 # Confirms the input amount is correct. Otherwise, starts it over
                 each_amount.each_with_index do |amount, i|
