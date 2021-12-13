@@ -1,0 +1,38 @@
+
+Calculator
+  should be an instance of a Calculator
+  should have an array property
+  should have an instance variable for the size of an array
+  should have an instance variable for bill
+  .split_equally
+    should be difined
+    should return an array
+  .pick_random_num
+    should be difined
+    should return an array
+    should return an array of random numbers depending on the number of people
+  .split_randomly
+    should be difined
+    should return an array
+    should be equal between the sum of the array and the bill amount
+  .split_manually
+    should be difined
+    should return an array (FAILED - 1)
+
+Failures:
+
+  1) Calculator .split_manually should return an array
+     Failure/Error: expect(@test_name.split_manually).to be_an_instance_of(Array)
+
+     NoMethodError:
+       undefined method `heading' for #<Calculator:0x000055868344c870 @array=["Amy", "Brian", "Charlie"], @no_of_ppl=3, @bill=100, @title="Hello World">
+     # ./methods.rb:85:in `split_manually'
+     # ./spec/split_bill_spec.rb:74:in `block (3 levels) in <top (required)>'
+
+Finished in 0.02652 seconds (files took 0.2531 seconds to load)
+14 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/split_bill_spec.rb:73 # Calculator .split_manually should return an array
+
