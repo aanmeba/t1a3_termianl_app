@@ -1,5 +1,6 @@
+# Automatic test for Calculator class and methods in the class in methods.rb file
+
 require_relative '../methods'
-# require_relative '../main'
 
 describe 'Calculator' do
 
@@ -17,7 +18,7 @@ describe 'Calculator' do
         expect(@test_name.array[1]).to eq("Brian")
     end
 
-    it 'should have an instance variable for the length of an array' do
+    it 'should have an instance variable for the size of an array' do
         expect(@test_name.no_of_ppl).to be(3)
     end
 
@@ -45,7 +46,7 @@ describe 'Calculator' do
         end
 
         it 'should return an array of random numbers depending on the number of people' do
-            expect(@test_name.pick_random_num.length).to eq(3)
+            expect(@test_name.pick_random_num.size).to eq(3)
         end
     end
 

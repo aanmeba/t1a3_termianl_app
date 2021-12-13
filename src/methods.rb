@@ -1,59 +1,70 @@
 require 'tty-prompt'
 
+# Class containing calculation methods
 class Calculator
     attr_reader :array, :no_of_ppl, :bill
 
+    # First param will be a name array that user input
     def initialize(array, bill)
         @array = array
-        @no_of_ppl = @array.length
+        @no_of_ppl = @array.size
         @bill = bill
     end
     
+    # Method to divide the bill evenly
     def split_equally
         result_array = []
         each_amount = (@bill / @no_of_ppl).round(2)
+
+        # Pushes the each_amount to the result_array
         i = 0
-            while i < @no_of_ppl
-                result_array << each_amount
-                i += 1    
-            end            
-        if (each_amount * @no_of_ppl) != @bill
-            leftover = @bill - (each_amount * @no_of_ppl)
+        while i < @no_of_ppl
+            result_array << each_amount
+            i += 1    
+        end
+
+        # Error handling :
+        # when the sum of the shares are not the same as @bill,
+        # picks a random number and adds the amount of the gap
+        # to the name which has the same number as an index
+        sum_of_shares = (each_amount * @no_of_ppl)
+        if sum_of_shares != @bill
+            leftover = @bill - sum_of_shares
             ran_num = rand(0..@no_of_ppl-1)
             result_array[ran_num] += leftover
-            # temp += leftover
         end                        
         return result_array
     end
 
+    # Method to pick an list of random number
     def pick_random_num
         rand_array = @no_of_ppl.times.map { rand(@no_of_ppl) }
         return rand_array
     end   
 
+    # Method to split the bill randomly
     def split_randomly        
-        # error handling - when pick_random_num returns all the elements are 0 in an array
+        # Error handling :
+        # when pick_random_num returns all the elements are 0 in an array
         begin
             rand_array = self.pick_random_num
-            # rand_array validation - [0, 0, 0] cause errors
-            # if rand_array.each {|item| item == 0}
-            #     rand_array = self.pick_random_num
-            # end
-            sum_rand_array = rand_array.sum      
+            sum_rand_array = rand_array.sum
+            # When sum_ran_array is 0, it will cause ZeroDivisonError
             remainder = @bill % sum_rand_array    
         rescue ZeroDivisionError
+            # Invokes pick_random_num method again
+            # until it generates valid array
             retry
         end  
         
-        # if there is a remainder, subtract it from the bill then calculate the rest
+        # If there is a remainder, 
+        # subtract it from the bill then calculate the rest
         each_value = (@bill - remainder)/sum_rand_array
 
-        # generate a new array including split values
-        new_array = rand_array.map {|i| 
-            i * each_value.round(1) 
-        }
+        # Generate a new array including split values
+        new_array = rand_array.map { |i| i * each_value.round(1) }
 
-        # if there is a remainder, pick another random number 
+        # If there is a remainder, pick another random number 
         # then add the remainder to the corresponding index of the new array
         if remainder != 0.0
             another_ran_num = rand(0..@no_of_ppl-1)
@@ -62,12 +73,15 @@ class Calculator
         return new_array        
     end
 
+    # Method to split the bill manually
     def split_manually
         each_amount = []
         index = 0
         
         prompt = TTY::Prompt.new
 
+        # Displays the total amount and number of people 
+        # to guide the user when entering the amount for each
         while index < @no_of_ppl
             puts "Total amount: #{@bill} | Number of people: #{index+1} / #{@no_of_ppl}"
             puts "----------------------------------------------".colorize($highlight)
@@ -78,14 +92,14 @@ class Calculator
                 q.modify :chomp
                 q.messages[:convert?] = "Please provide positive numbers"
             end
-            
             system('clear')
             each = each.round(2)
         
+            # Input validation
+            # If user enter an amount that is above the total bill, it restarts
             if (each_amount.sum + each) <= @bill 
                 each_amount << each
                 rest = (@bill - each_amount.sum).round(2)
-
                 system('clear')
                 puts "Rest: #{rest}"
                 index += 1
@@ -96,23 +110,28 @@ class Calculator
                 index = 0
             end
 
+            # Result validation
+            # If the rest is 0.0, 
+            # or the last person left after entering the amount for each, 
+            # it calculates the rest and allocates it to the last person
             if index == (@no_of_ppl - 1) || rest == 0.0
                 each_amount << rest
-                while each_amount.length != @no_of_ppl
+                # If the first person enters the same amount of the total bill,
+                # the rest is going to be 0.0, 
+                # and inserts it to the rest of people
+                while each_amount.size != @no_of_ppl
                     each_amount << rest
                 end
-
                 system('clear')
-                # confirm the input amount is correct. Otherwise, start it over
+                # Confirms the input amount is correct. Otherwise, starts it over
                 each_amount.each_with_index do |amount, i|
                     puts "#{i+1}. #{@array[i].capitalize}: #{amount}"
                 end
 
                 yes_no_manually = prompt.yes?("Are you happy with it?") do |q|
-                q.required true
-                q.modify   :down
+                    q.required true
+                    q.modify   :down
                 end
-
                 system('clear')
                 case yes_no_manually
                 when true
@@ -126,6 +145,7 @@ class Calculator
         return each_amount
     end
 
+    # Method to display the result
     def display(result_array)
         puts "===========================".colorize($instruction)
         @array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{result_array[index].round(2)}"}

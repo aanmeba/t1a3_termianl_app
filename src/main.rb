@@ -1,9 +1,14 @@
+# Main file for the 'Split The Bills' app
+
+# Gems
 require 'tty-prompt'
 require 'colorize'
+
+# Imports other files
 require_relative './methods'
 require_relative './command-line-arg'
 
-# colour variables
+# Global variables for colours used in different files
 $instruction = :light_blue
 $highlight = :light_red
 $err_msg = ">>".colorize($highlight)
@@ -18,6 +23,7 @@ input = ""
 
 puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize($instruction) + "when you finish."
 
+# Names input
 while input
     input = prompt.ask("Name:", required: true) do |q|
         q.validate(/^[A-Za-z ]*$/)
@@ -26,17 +32,18 @@ while input
     end
 
     if input == "done"    
-        if name_array.length <= 1
+        if name_array.size <= 1
             puts $err_msg + " You should provide more than two people"
         else
             break
         end
     else
         name_array << input
-        name_array.each_with_index {|name, index| puts "#{index+1}. #{name.capitalize}"}
+        name_array.each_with_index { |name, index| puts "#{index+1}. #{name.capitalize}" }
     end
 end
 
+# Bill validation loop
 bill_validation = true
 while bill_validation
     system('clear')
@@ -61,6 +68,7 @@ while bill_validation
 end
 
 system('clear')
+# Generates an instance of Calculator class
 calculator_instance = Calculator.new(name_array, bill)
 
 choices = [

@@ -1,4 +1,5 @@
-# command line arguments
+# Command line arguments
+
 if ARGV.length > 0
     flag, *rest = ARGV 
     ARGV.clear
