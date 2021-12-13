@@ -1,14 +1,14 @@
-require 'tty-prompt'
 
 # Class containing calculation methods
 class Calculator
     attr_reader :array, :no_of_ppl, :bill
 
     # First param will be a name array that user input
-    def initialize(array, bill)
+    def initialize(array, bill, title)
         @array = array
         @no_of_ppl = @array.size
         @bill = bill
+        @title = title
     end
     
     # Method to divide the bill evenly
@@ -77,37 +77,56 @@ class Calculator
     def split_manually
         each_amount = []
         index = 0
-        
-        prompt = TTY::Prompt.new
-
+        rest = ""
+        error_message = false
         # Displays the total amount and number of people 
         # to guide the user when entering the amount for each
         while index < @no_of_ppl
-            puts "Total amount: #{@bill} | Number of people: #{index+1} / #{@no_of_ppl}"
+            heading(@title)
+            # Displays an error message if the input is invalid
+            if error_message
+                puts $err_msg + " Please enter the valid amount"
+            end
+
+            if index == 0
+                total_amount = "Total amount: #{@bill}"
+            else
+                total_amount = "Rest: #{rest}"
+            end
+            puts "#{total_amount} | Number of people: #{index+1} / #{@no_of_ppl}"
             puts "----------------------------------------------".colorize($highlight)
             
+            prompt = TTY::Prompt.new
+
             each = prompt.ask("How much is " + "#{@array[index].capitalize}".colorize($instruction) + " going to pay?", required: true, convert: :float) do |q|
                 q.validate(/^(?:[0-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
                 q.messages[:valid?] = "Please provide positive numbers"
                 q.modify :chomp
                 q.messages[:convert?] = "Please provide positive numbers"
             end
-            system('clear')
             each = each.round(2)
-        
+            pp each 
             # Input validation
             # If user enter an amount that is above the total bill, it restarts
             if (each_amount.sum + each) <= @bill 
                 each_amount << each
                 rest = (@bill - each_amount.sum).round(2)
-                system('clear')
-                puts "Rest: #{rest}"
+                error_message = false
+
+                pp each_amount
+                pp each
+
                 index += 1
             else 
-                system('clear')
-                puts $err_msg + " Please enter the valid amount"
+                # A user enters invalid input
+                # so the error message will show up
+                error_message = true
                 each_amount = []
                 index = 0
+                rest = ""
+
+                pp each_amount
+                pp each
             end
 
             # Result validation
@@ -122,7 +141,9 @@ class Calculator
                 while each_amount.size != @no_of_ppl
                     each_amount << rest
                 end
-                system('clear')
+                pp "rest: #{rest}"
+                pp "each amout array: #{each_amount}"
+                heading(@title)
                 # Confirms the input amount is correct. Otherwise, starts it over
                 each_amount.each_with_index do |amount, i|
                     puts "#{i+1}. #{@array[i].capitalize}: #{amount}"
@@ -132,13 +153,13 @@ class Calculator
                     q.required true
                     q.modify   :down
                 end
-                system('clear')
                 case yes_no_manually
                 when true
                     break
                 when false
                     each_amount = []
                     index = 0
+                    rest = ""
                 end
             end
         end
@@ -146,7 +167,9 @@ class Calculator
     end
 
     # Method to display the result
+    # The second param is for calling the heading method
     def display(result_array)
+        heading(@title)
         puts "===========================".colorize($instruction)
         @array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{result_array[index].round(2)}"}
         puts "---------------------------".colorize($highlight)

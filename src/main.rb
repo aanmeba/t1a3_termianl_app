@@ -3,10 +3,12 @@
 # Gems
 require 'tty-prompt'
 require 'colorize'
+require 'artii'
 
 # Imports other files
 require_relative './methods'
 require_relative './command-line-arg'
+require_relative './heading'
 
 # Global variables for colours used in different files
 $instruction = :light_blue
@@ -14,13 +16,16 @@ $highlight = :light_red
 $err_msg = ">>".colorize($highlight)
 
 prompt = TTY::Prompt.new
+Arti = Artii::Base.new :font => 'slant'
 
 title = "Split The Bills"
-puts " Let's #{title}! ".colorize(:black).on_light_blue
-
 name_array = []
 input = ""
 
+# system('clear')
+# puts Arti.asciify(title)
+# puts " Let's #{title}! ".colorize(:black).on_light_blue
+heading(title)
 puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize($instruction) + "when you finish."
 
 # Names input
@@ -46,7 +51,7 @@ end
 # Bill validation loop
 bill_validation = true
 while bill_validation
-    system('clear')
+    heading(title)
 
     bill = prompt.ask("Enter the total amount", required: true, convert: :float) do |q|
         q.validate(/^(?:[1-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
@@ -67,9 +72,9 @@ while bill_validation
     end
 end
 
-system('clear')
+heading(title)
 # Generates an instance of Calculator class
-calculator_instance = Calculator.new(name_array, bill)
+calculator_instance = Calculator.new(name_array, bill, title)
 
 choices = [
         {name: 'Randomly', value: 1},
