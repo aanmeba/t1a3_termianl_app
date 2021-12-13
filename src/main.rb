@@ -8,7 +8,7 @@ require 'artii'
 # Imports other files
 require_relative './methods'
 require_relative './command-line-arg'
-require_relative './heading'
+require_relative './Calculator'
 
 # Global variables for colours used in different files
 $instruction = :light_blue
@@ -76,29 +76,33 @@ heading(title)
 # Generates an instance of Calculator class
 calculator_instance = Calculator.new(name_array, bill, title)
 
-choices = [
-        {name: 'Randomly', value: 1},
-        {name: 'Equally', value: 2},
-        {name: 'Manually', value: 3},
-        {name: 'Exit', value: 4}
-      ]
-user_input = prompt.select("Choose how you are going to split the bill.", choices)
+while true
+    choices = [
+            {name: 'Randomly', value: 1},
+            {name: 'Equally', value: 2},
+            {name: 'Manually', value: 3},
+            {name: 'Exit', value: 4}
+        ]
+    user_input = prompt.select("Choose how you are going to split the bill.", choices)
 
-system('clear')
+    system('clear')
 
-case user_input
-when 1
-    amount_array = calculator_instance.split_randomly
-    calculator_instance.display(amount_array)
-    exit
-when 2    
-    result_array = calculator_instance.split_equally
-    calculator_instance.display(result_array)
-    exit
-when 3
-    manual_return = calculator_instance.split_manually
-    calculator_instance.display(manual_return)
-    exit
-when 4
-    puts "Bye for now!"
+    case user_input
+    when 1
+        amount_array = calculator_instance.split_randomly
+        calculator_instance.display(amount_array)
+        # want_to_exit
+    when 2    
+        result_array = calculator_instance.split_equally
+        calculator_instance.display(result_array)
+        # want_to_exit
+    when 3
+        manual_return = calculator_instance.split_manually
+        calculator_instance.display(manual_return)
+        # want_to_exit
+    when 4
+        heading(title)
+        puts "Bye for now!"
+        exit
+    end
 end
