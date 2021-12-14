@@ -1,7 +1,6 @@
 # Automatic test for Calculator class and methods in the class in methods.rb file
 
-require_relative '../methods'
-# require_relative '../heading'
+require_relative '../Calculator.rb'
 
 describe 'Calculator' do
 
@@ -70,16 +69,5 @@ describe 'Calculator' do
         it 'should be difined' do
             expect(defined? @test_name.split_manually).to eq("method")
         end
-
-        it 'should return an array' do
-            expect(@test_name.split_manually).to be_an_instance_of(Array)
-            # expect(@test_name.split_manually).to_not be_nil
-        end
-
-        # describe '.heading' do
-        #     it 'should be invoked inside of .split_manually method' do
-
-        #     end
-        # end
     end
 end
