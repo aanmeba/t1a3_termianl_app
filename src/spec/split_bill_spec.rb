@@ -1,6 +1,6 @@
 # Automatic test for Calculator class and methods in the class in methods.rb file
 
-require_relative '../Calculator.rb'
+require_relative '../methods/Calculator.rb'
 
 describe 'Calculator' do
 

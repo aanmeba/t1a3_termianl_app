@@ -84,7 +84,7 @@ class Calculator
             heading(@title)
             # Displays an error message if the input is invalid
             if error_message
-                puts $err_msg + " Please enter the valid amount"
+                puts Variable.err_msg + " Please enter the valid amount"
             end
 
             if index == 0
@@ -93,11 +93,11 @@ class Calculator
                 total_amount = "Rest: #{rest}"
             end
             puts "#{total_amount} | Number of people: #{index+1} / #{@no_of_ppl}"
-            puts "----------------------------------------------".colorize($highlight)
+            puts "----------------------------------------------".colorize(Variable.highlight)
             
             prompt = TTY::Prompt.new
 
-            each = prompt.ask("How much is " + "#{@array[index].capitalize}".colorize($instruction) + " going to pay?", required: true, convert: :float) do |q|
+            each = prompt.ask("How much is " + "#{@array[index].capitalize}".colorize(Variable.instruction) + " going to pay?", required: true, convert: :float) do |q|
                 q.validate(/^(?:[0-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
                 q.messages[:valid?] = "Please provide positive numbers"
                 q.modify :chomp
@@ -161,10 +161,10 @@ class Calculator
     # The second param is for calling the heading method
     def display(result_array)
         heading(@title)
-        puts "===========================".colorize($instruction)
+        puts "===========================".colorize(Variable.instruction)
         @array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{result_array[index].round(2)}"}
-        puts "---------------------------".colorize($highlight)
+        puts "---------------------------".colorize(Variable.highlight)
         puts "Total: #{result_array.sum.round(2)}"
-        puts "===========================".colorize($instruction)
+        puts "===========================".colorize(Variable.instruction)
     end
 end

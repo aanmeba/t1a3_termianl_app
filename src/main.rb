@@ -6,14 +6,12 @@ require 'colorize'
 require 'artii'
 
 # Imports other files
-require_relative './methods'
-require_relative './command-line-arg'
-require_relative './Calculator'
+require_relative './methods/Variables'
+require_relative './methods/methods'
+require_relative './methods/Calculator'
+Variable = Variables.new
 
-# Global variables for colours used in different files
-$instruction = :light_blue
-$highlight = :light_red
-$err_msg = ">>".colorize($highlight)
+require_relative './command-line-arg'
 
 prompt = TTY::Prompt.new
 Arti = Artii::Base.new :font => 'slant'
@@ -22,11 +20,8 @@ title = "Split The Bills"
 name_array = []
 input = ""
 
-# system('clear')
-# puts Arti.asciify(title)
-# puts " Let's #{title}! ".colorize(:black).on_light_blue
 heading(title)
-puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize($instruction) + "when you finish."
+puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize(Variable.instruction) + "when you finish."
 
 # Names input
 while input
@@ -38,7 +33,7 @@ while input
 
     if input == "done"    
         if name_array.size <= 1
-            puts $err_msg + " You should provide more than two people"
+            puts Variable.err_msg + " You should provide more than two people"
         else
             break
         end
@@ -61,7 +56,7 @@ while bill_validation
     end
     bill = bill.round(2)
 
-    yes_no = prompt.yes?("The total amount is " + "#{bill}".colorize($instruction) + ", is it correct?") do |q|
+    yes_no = prompt.yes?("The total amount is " + "#{bill}".colorize(Variable.instruction) + ", is it correct?") do |q|
         q.required true
         q.modify   :down
     end
