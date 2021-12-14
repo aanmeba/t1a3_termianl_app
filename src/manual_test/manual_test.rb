@@ -1,5 +1,5 @@
 # Manual test for error handling in .split_randomly
-# - Error: ZeroDivisionError in a specific situation
+# Error: ZeroDivisionError in a specific situation
 
 class Calculator
     attr_reader :array, :no_of_ppl, :bill
