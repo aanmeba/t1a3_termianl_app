@@ -86,15 +86,12 @@ while true
     when 1
         amount_array = calculator_instance.split_randomly
         calculator_instance.display(amount_array)
-        # want_to_exit
     when 2    
         result_array = calculator_instance.split_equally
         calculator_instance.display(result_array)
-        # want_to_exit
     when 3
         manual_return = calculator_instance.split_manually
         calculator_instance.display(manual_return)
-        # want_to_exit
     when 4
         heading(title)
         puts "Bye for now!"
