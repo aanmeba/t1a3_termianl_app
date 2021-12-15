@@ -12,8 +12,6 @@
     * [How To Use](https://github.com/aanmeba/t1a3_termianl_app#how-to-use)
 * [Reference](https://github.com/aanmeba/t1a3_termianl_app#reference)
 
-___
-
 ## Source Control Repository
 * Here's the 
 [repo](https://github.com/aanmeba/t1a3_termianl_app)
