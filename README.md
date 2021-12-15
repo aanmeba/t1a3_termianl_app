@@ -73,13 +73,10 @@ Typing '-help' or '-info' in the command line when executing this application di
 
         ```
         # Install bundler
+        gem install bundler
+        
+        # Install the dependencies specified in the Gemfile
         bundle install
-
-        # Install Ruby Gems
-        gem install tty-prompt
-        gem install colorize
-        gem install artii
-        (gem install rspec)
         ```
 
 3. Run the app with `Ruby main.rb`
@@ -93,5 +90,8 @@ Typing '-help' or '-info' in the command line when executing this application di
         ruby main.rb -info
         ```
 
+## Reference
 
-
+* [An Intro to Ruby Gems](https://dev.to/milandhar/an-intro-to-ruby-gems-ap8)
+* [Bundler Documentation](https://bundler.io/v2.2/man/bundle-install.1.html)
+* [Using Bundler to install Ruby gems](https://help.dreamhost.com/hc/en-us/articles/115001070131-Using-Bundler-to-install-Ruby-gems)
