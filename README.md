@@ -50,8 +50,6 @@ Typing '-help' or '-info' in the command line when executing this application di
 
 ## Getting Started
 
-Make sure Ruby (preferably, version >= 2.7.0) installed. 
-
 ### Requirements
 
 * macOS X with macOS 10.9 or later
@@ -68,31 +66,32 @@ Make sure Ruby (preferably, version >= 2.7.0) installed.
 
 ### How To Use
 
-1. Make sure Ruby (2.7.0 or higher) installed in local. Check your Ruby version with `which ruby` in your command line.
+1. Make sure Ruby (2.7.0 or higher) is installed in your local. Check your Ruby version with `which ruby` in the command line.
 
-2. Run the bash script file to install the dependencies with `./install_dependencies.sh` in your command line. If you would like to install them manually, please follow the instruction below.
+2. Run the bash script file to install the dependencies with `./install_dependencies.sh` in your command line. 
+    * If you would like to install them manually, please follow the instruction below.
 
-    ```
-    # Install bundler
-    bundle install
+        ```
+        # Install bundler
+        bundle install
 
-    # Install Ruby Gems
-    gem install tty-prompt
-    gem install colorize
-    gem install artii
-    (gem install rspec)
-    ```
+        # Install Ruby Gems
+        gem install tty-prompt
+        gem install colorize
+        gem install artii
+        (gem install rspec)
+        ```
 
 3. Run the app with `Ruby main.rb`
 
-* To find more details for each option, please add the `-help` or `-h` in the command line
-    ```
-    ruby main.rb -help
-    ```
-* To know more about this application, please add the `-info` or `-i` in the command line
-    ```
-    ruby main.rb -info
-    ```
+    * To find more details for each option, please add the `-help` or `-h` in the command line
+        ```
+        ruby main.rb -help
+        ```
+    * To know more about this application, please add the `-info` or `-i` in the command line
+        ```
+        ruby main.rb -info
+        ```
 
 
 
