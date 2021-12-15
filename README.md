@@ -1,17 +1,5 @@
 # T1A3 - Terminal Application
 
-## Table of Contents
-* [Source Control Repository](https://github.com/aanmeba/t1a3_termianl_app#source-control-repository)
-* [Software Development Plan](https://github.com/aanmeba/t1a3_termianl_app#software-development-plan)
-* [Features](https://github.com/aanmeba/t1a3_termianl_app#features)
-* [User Interaction & Experience](https://github.com/aanmeba/t1a3_termianl_app#user-interaction--experience)
-* [Control Flow](https://github.com/aanmeba/t1a3_termianl_app#control-flow)
-* [Implementation Plan](https://github.com/aanmeba/t1a3_termianl_app#implementation-plan)
-* [Getting Started](https://github.com/aanmeba/t1a3_termianl_app#getting-started)
-    * [Requirements](https://github.com/aanmeba/t1a3_termianl_app#requirements)
-    * [How To Use](https://github.com/aanmeba/t1a3_termianl_app#how-to-use)
-* [Reference](https://github.com/aanmeba/t1a3_termianl_app#reference)
-
 ## Source Control Repository
 * Here's the 
 [repo](https://github.com/aanmeba/t1a3_termianl_app)
