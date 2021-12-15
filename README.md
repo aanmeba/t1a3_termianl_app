@@ -68,31 +68,31 @@ Make sure Ruby (preferably, version >= 2.7.0) installed.
 
 ### How To Use
 
-1. Install Ruby (2.7.0 or higher)
-    - Check your Ruby version with `which ruby` in your command line
+1. Make sure Ruby (2.7.0 or higher) installed in local. Check your Ruby version with `which ruby` in your command line.
 
-2. Install the Ruby Gems //// Run the bash script file !!!
-```
-# Install bundler
-bundle install
+2. Run the bash script file to install the dependencies with `./install_dependencies.sh` in your command line. If you would like to install them manually, please follow the instruction below.
 
-# Install Ruby Gems
-gem install tty-prompt
-gem install colorize
-gem install artii
-```
+    ```
+    # Install bundler
+    bundle install
+
+    # Install Ruby Gems
+    gem install tty-prompt
+    gem install colorize
+    gem install artii
+    (gem install rspec)
+    ```
 
 3. Run the app with `Ruby main.rb`
 
-### Help
 * To find more details for each option, please add the `-help` or `-h` in the command line
-```
-ruby main.rb -help
-```
+    ```
+    ruby main.rb -help
+    ```
 * To know more about this application, please add the `-info` or `-i` in the command line
-```
-ruby main.rb -info
-```
+    ```
+    ruby main.rb -info
+    ```
 
 
 
