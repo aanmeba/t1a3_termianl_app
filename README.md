@@ -38,6 +38,10 @@ When only one person is left after entering the amount for every other person, i
 
 Typing '-help' or '-info' in the command line when executing this application displays further information on how to use it. Users can enter names and amounts following the instruction and then can select an option using the arrow keys.
 
+The main feature of this program is a calculation, therefore it is important to validate the user inputs and returned values from the methods are calculable data.
+
+When the user enters invalid inputs, this app immediately displays a warning message for the user to re-enter valid data. Apart from that, if the `.pick_random_number` method returns all the elements in an array that are zero (0), it will cause ZeroDivisionError. So this error is handled within the `rescue` block by retrying the method until it creates another array until the array is valid. Therefore, the user will be unaware of whether there is an error or not.
+
 ## Control flow
 
 * Here's the link to the [flowchart](https://lucid.app/lucidchart/d446112a-d8c4-45cf-81db-cdb4df1e9473/edit?invitationId=inv_b2bd074b-cc3f-4729-aa8a-de055b24321a) (Log in required.)
