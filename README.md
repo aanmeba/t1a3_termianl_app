@@ -72,7 +72,7 @@ When the user enters invalid inputs, this app immediately displays a warning mes
 
 1. Make sure Ruby (2.7.0 or higher) is installed in your local. Check your Ruby version with `which ruby` in the command line.
 
-2. Run the bash script file to install the dependencies with `./install_dependencies.sh` in your command line. 
+2. Run the bash script file to install the dependencies then run the program with `./install_and_run.sh` in your command line.
     * If you would like to install them manually, please follow the instruction below.
 
         ```
@@ -83,16 +83,16 @@ When the user enters invalid inputs, this app immediately displays a warning mes
         bundle install
         ```
 
-3. Run the app with `Ruby main.rb`
+    * Run the app with `Ruby main.rb`
 
-    * To find more details for each option, please add the `-help` or `-h` in the command line
-        ```
-        ruby main.rb -help
-        ```
-    * To know more about this application, please add the `-info` or `-i` in the command line
-        ```
-        ruby main.rb -info
-        ```
+        * To find more details for each option, please add the `-help` or `-h` in the command line
+            ```
+            ruby main.rb -help
+            ```
+        * To know more about this application, please add the `-info` or `-i` in the command line
+            ```
+            ruby main.rb -info
+            ```
 
 ## Reference
 
