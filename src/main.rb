@@ -80,8 +80,6 @@ while true
         ]
     user_input = prompt.select("Choose how you are going to split the bill.", choices)
 
-    system('clear')
-
     case user_input
     when 1
         amount_array = calculator_instance.split_randomly
