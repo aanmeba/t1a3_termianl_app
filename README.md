@@ -1,5 +1,19 @@
 # T1A3 - Terminal Application
 
+## Content
+* [Source Control Repository](https://github.com/aanmeba/t1a3_termianl_app#source-control-repository)
+* [Software Development Plan](https://github.com/aanmeba/t1a3_termianl_app#software-development-plan)
+* [Features](https://github.com/aanmeba/t1a3_termianl_app#features)
+* [User Interaction & Experience](https://github.com/aanmeba/t1a3_termianl_app#user-interaction--experience)
+* [Control Flow](https://github.com/aanmeba/t1a3_termianl_app#control-flow)
+* [Implementation Plan](https://github.com/aanmeba/t1a3_termianl_app#implementation-plan)
+* [Getting Started](https://github.com/aanmeba/t1a3_termianl_app#getting-started)
+    * [Requirements](https://github.com/aanmeba/t1a3_termianl_app#requirements)
+    * [How To Use](https://github.com/aanmeba/t1a3_termianl_app#how-to-use)
+* [Reference](https://github.com/aanmeba/t1a3_termianl_app#reference)
+
+___
+
 ## Source Control Repository
 * Here's the 
 [repo](https://github.com/aanmeba/t1a3_termianl_app)
@@ -40,13 +54,13 @@ Typing '-help' or '-info' in the command line when executing this application di
 
 ## Control flow
 
-![Control Flow](./docs/terminal_app_flowchart.png)
 * Here's the link to the [flowchart](https://lucid.app/lucidchart/d446112a-d8c4-45cf-81db-cdb4df1e9473/edit?invitationId=inv_b2bd074b-cc3f-4729-aa8a-de055b24321a) (Log in required.)
+![Control Flow](./docs/terminal_app_flowchart.png)
 
 ## Implementation Plan
 
-![Trello_board_screenshot](./docs/trello.png)
 * Here's the link to the [Trello Board](https://trello.com/b/l7Rq2BOL/t1a3-terminal-app)
+![Trello_board_screenshot](./docs/trello.png)
 
 ## Getting Started
 
