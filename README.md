@@ -1,6 +1,6 @@
 # T1A3 - Terminal Application
 
-## Content
+## Table of Contents
 * [Source Control Repository](https://github.com/aanmeba/t1a3_termianl_app#source-control-repository)
 * [Software Development Plan](https://github.com/aanmeba/t1a3_termianl_app#software-development-plan)
 * [Features](https://github.com/aanmeba/t1a3_termianl_app#features)
