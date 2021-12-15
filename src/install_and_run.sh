@@ -1,4 +1,4 @@
-#!/urs/bin/bash
+#!/usr/bin/bash
 
 gem install bundler
 
