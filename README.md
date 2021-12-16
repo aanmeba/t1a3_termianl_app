@@ -14,6 +14,18 @@ Based on these three situations, this program takes valid inputs, calculates the
 
 Users simply enter more than two names and the total amount they want to share. Then the program displays options to divide the amount equally, randomly, or manually and the user can choose one of the options using arrow keys on a keyboard.
 
+This program is for those who, especially Millennials, want to divide a group expense in different ways. Its header in ASCII art might give them nostalgia. And this program is easy to install and use by cloning this repo and following the instruction below. 
+
+* Timeline
+
+| Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 |
+| --- | --- | --- | --- | --- | --- |
+| Control flow | | | | | |
+| Unit test | Unit test | Unit test | Unit test | |
+| | Main features | Main features | Main features | |
+| | | | Improve UI & UX | |
+| | | | | Refectoring | Refectoring |
+
 ## Features
 
 * Split Randomly
