@@ -7,8 +7,9 @@ require 'artii'
 
 # Imports other files
 require_relative './methods/Variables'
-require_relative './methods/methods'
 require_relative './methods/Calculator'
+require_relative './methods/methods'
+
 Variable = Variables.new
 
 require_relative './command-line-arg'
@@ -27,7 +28,7 @@ puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize(Variable.ins
 while input
     input = prompt.ask("Name:", required: true) do |q|
         q.validate(/^[A-Za-z ]*$/)
-        q.messages[:valid?] = "Please enter only alphabetical letters"
+        q.messages[:valid?] = "Please enter only alphabets"
         q.modify :chomp, :down
     end
 
@@ -38,8 +39,8 @@ while input
             break
         end
     else
-        name_array << input
-        name_array.each_with_index { |name, index| puts "#{index+1}. #{name.capitalize}" }
+        name_array << input.split.map(&:capitalize!).join(' ')
+        name_array.each_with_index { |name, index| puts "#{index+1}. #{name}" }
     end
 end
 
