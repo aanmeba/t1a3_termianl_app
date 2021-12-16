@@ -2,6 +2,7 @@
 # Class containing calculation methods
 class Calculator
     attr_reader :array, :no_of_ppl, :bill, :title
+
     # First param will be a name array that user input
     def initialize(array, bill, title)
         @array = array
@@ -15,14 +16,14 @@ class Calculator
         result_array = []
         each_amount = (@bill / @no_of_ppl).round(2)
 
-        # Pushes the each_amount to the result_array
+        # Push the each_amount to the result_array
         i = 0
         while i < @no_of_ppl
             result_array << each_amount
             i += 1    
         end
 
-        # Error handling :
+        # Handling edge case:
         # when the sum of the shares are not the same as @bill,
         # picks a random number and adds the amount of the gap
         # to the name which has the same number as an index
@@ -35,7 +36,7 @@ class Calculator
         return result_array
     end
 
-    # Method to pick an list of random number
+    # Method to pick a list of random number
     def pick_random_num
         rand_array = @no_of_ppl.times.map { rand(10) }
         return rand_array
@@ -48,7 +49,7 @@ class Calculator
         begin
             rand_array = self.pick_random_num
             sum_rand_array = rand_array.sum
-            # When sum_ran_array is 0, it will cause ZeroDivisonError
+            # When sum_rand_array is 0, it will cause ZeroDivisonError
             remainder = @bill % sum_rand_array    
         rescue ZeroDivisionError
             # Invokes pick_random_num method again
@@ -79,7 +80,7 @@ class Calculator
         rest = ""
         error_message = false
         # Displays the total amount and number of people 
-        # to guide the user when entering the amount for each
+        # to guide the user when entering the amount for each person
         while index < @no_of_ppl
             heading(@title)
             # Displays an error message if the input is invalid
@@ -98,6 +99,7 @@ class Calculator
             prompt = TTY::Prompt.new
 
             each = prompt.ask("How much is " + "#{@array[index]}".colorize(Variable.instruction) + " going to pay?", required: true, convert: :float) do |q|
+                # Input validation
                 q.validate(/^(?:[0-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
                 q.messages[:valid?] = "Please provide positive numbers"
                 q.modify :chomp
@@ -105,7 +107,7 @@ class Calculator
             end
             each = each.round(2)
 
-            # Input validation
+            # Handling edge case:
             # If user enter an amount that is above the total bill, it restarts
             if (each_amount.sum + each) <= @bill 
                 each_amount << each
@@ -113,8 +115,7 @@ class Calculator
                 error_message = false
                 index += 1
             else 
-                # A user enters invalid input
-                # so the error message will show up
+                # If a user enters invalid input, this error message will show up
                 error_message = true
                 each_amount = []
                 index = 0
@@ -158,7 +159,6 @@ class Calculator
     end
 
     # Method to display the result
-    # The second param is for calling the heading method
     def display(result_array)
         heading(@title)
         puts "===========================".colorize(Variable.instruction)

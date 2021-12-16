@@ -1,5 +1,5 @@
 
-# Class for variables to use across files
+# Class for variables for colour values to use across files
 class Variables
     attr_reader :instruction, :highlight, :err_msg
 

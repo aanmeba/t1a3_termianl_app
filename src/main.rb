@@ -5,7 +5,7 @@ require 'tty-prompt'
 require 'colorize'
 require 'artii'
 
-# Imports other files
+# Import files
 require_relative './methods/Variables'
 require_relative './methods/Calculator'
 require_relative './methods/methods'
@@ -24,14 +24,16 @@ input = ""
 heading(title)
 puts "Enter names one by one.\s\nPlease " + "type 'done' ".colorize(Variable.instruction) + "when you finish."
 
-# Names input
+# Input - names
 while input
     input = prompt.ask("Name:", required: true) do |q|
+        # Input validation
         q.validate(/^[A-Za-z ]*$/)
         q.messages[:valid?] = "Please enter only alphabets"
         q.modify :chomp, :down
     end
 
+    # The number of input (name) validation
     if input == "done"    
         if name_array.size <= 1
             puts Variable.err_msg + " You should provide more than two people"
@@ -44,12 +46,13 @@ while input
     end
 end
 
-# Bill validation loop
+# Input - bill
 bill_validation = true
 while bill_validation
     heading(title)
 
     bill = prompt.ask("Enter the total amount", required: true, convert: :float) do |q|
+        # Input validation
         q.validate(/^(?:[1-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
         q.messages[:valid?] = "Please provide positive numbers"
         q.modify :chomp
