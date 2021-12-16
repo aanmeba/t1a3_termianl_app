@@ -9,7 +9,7 @@ class Calculator
         @bill = bill
         @title = title
     end
-    
+
     # Method to divide the bill evenly
     def split_equally
         result_array = []
@@ -97,7 +97,7 @@ class Calculator
             
             prompt = TTY::Prompt.new
 
-            each = prompt.ask("How much is " + "#{@array[index].capitalize}".colorize(Variable.instruction) + " going to pay?", required: true, convert: :float) do |q|
+            each = prompt.ask("How much is " + "#{@array[index]}".colorize(Variable.instruction) + " going to pay?", required: true, convert: :float) do |q|
                 q.validate(/^(?:[0-9]\d*|0(?!(?:\.0+)?$))?(?:\.\d+)?$/)
                 q.messages[:valid?] = "Please provide positive numbers"
                 q.modify :chomp
@@ -137,7 +137,7 @@ class Calculator
                 heading(@title)
                 # Confirms the input amount is correct. Otherwise, starts it over
                 each_amount.each_with_index do |amount, i|
-                    puts "#{i+1}. #{@array[i].capitalize}: #{amount}"
+                    puts "#{i+1}. #{@array[i]}: #{amount}"
                 end
 
                 yes_no_manually = prompt.yes?("Are you happy with it?") do |q|
@@ -162,7 +162,7 @@ class Calculator
     def display(result_array)
         heading(@title)
         puts "===========================".colorize(Variable.instruction)
-        @array.each_with_index {|name, index| puts "#{index + 1}. #{name.capitalize}: $#{result_array[index].round(2)}"}
+        @array.each_with_index {|name, index| puts "#{index + 1}. #{name}: $#{result_array[index].round(2)}"}
         puts "---------------------------".colorize(Variable.highlight)
         puts "Total: #{result_array.sum.round(2)}"
         puts "===========================".colorize(Variable.instruction)

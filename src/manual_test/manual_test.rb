@@ -2,7 +2,8 @@
 # Error: ZeroDivisionError in a specific situation
 
 class Calculator
-    attr_reader :array, :no_of_ppl, :bill
+    attr_accessor :array
+    attr_reader :no_of_ppl, :bill
 
     def initialize(array, bill)
         @array = array
@@ -45,4 +46,14 @@ class Calculator
 end
 
 test_one = Calculator.new(["amy", "winehouse"], 10)
-pp test_one.split_randomly
+# manual test - 1
+# pp test_one.split_randomly
+
+def string(array)
+    names = []
+    array.each { |name| names << name.split.map(&:capitalize!).join(' ') }
+    return names
+end
+
+# manual test -2
+pp string(["jungah ahn", "yejun park"])
