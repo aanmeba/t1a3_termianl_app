@@ -168,12 +168,11 @@ class Calculator
             table << [" #{index + 1} ", " #{name} ", " $ #{result_array[index].round(2)} "]
         end
 
+        table.render(:ascii, alignments: [:center, :left, :center])
+
+        puts
         puts table.render_with MyBorder
-        # return table
-        # puts "===========================".colorize(Variable.instruction)
-        # @array.each_with_index {|name, index| puts "#{index + 1}. #{name}: $#{result_array[index].round(2)}"}
-        # puts "---------------------------".colorize(Variable.highlight)
-        # puts "Total: #{result_array.sum.round(2)}"
-        # puts "===========================".colorize(Variable.instruction)
+        puts Variable.err_msg + " Total: #{result_array.sum.round(2)}"
+        puts
     end
 end
