@@ -161,10 +161,19 @@ class Calculator
     # Method to display the result
     def display(result_array)
         heading(@title)
-        puts "===========================".colorize(Variable.instruction)
-        @array.each_with_index {|name, index| puts "#{index + 1}. #{name}: $#{result_array[index].round(2)}"}
-        puts "---------------------------".colorize(Variable.highlight)
-        puts "Total: #{result_array.sum.round(2)}"
-        puts "===========================".colorize(Variable.instruction)
+        table = TTY::Table.new(header: [" No ", " Name ", " Amount "])
+        renderer = TTY::Table::Renderer::ASCII.new(table)
+
+        @array.each_with_index do |name, index| 
+            table << [" #{index + 1} ", " #{name} ", " $ #{result_array[index].round(2)} "]
+        end
+
+        puts table.render_with MyBorder
+        # return table
+        # puts "===========================".colorize(Variable.instruction)
+        # @array.each_with_index {|name, index| puts "#{index + 1}. #{name}: $#{result_array[index].round(2)}"}
+        # puts "---------------------------".colorize(Variable.highlight)
+        # puts "Total: #{result_array.sum.round(2)}"
+        # puts "===========================".colorize(Variable.instruction)
     end
 end

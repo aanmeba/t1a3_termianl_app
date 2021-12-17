@@ -55,5 +55,27 @@ def string(array)
     return names
 end
 
-# manual test -2
-pp string(["jungah ahn", "yejun park"])
+# manual test - 2
+# pp string(["jungah ahn", "yejun park"])
+
+# manual test - 3 - tty-table
+require 'colorize'
+require 'tty-table'
+table = TTY::Table.new(header: [" Name ", " Amount "])
+renderer = TTY::Table::Renderer::ASCII.new(table)
+
+class MyBorder < TTY::Table::Border
+    def_border do
+        top         "=".colorize(:light_red)
+        center       "|".colorize(:light_red)
+        bottom       "=".colorize(:light_red)
+        mid          "-".colorize(:light_red)
+        # mid_mid      " "
+    end
+end
+
+table << [" jungah ahn ", " $500 "]
+table << [" jungah ahn ", " $500 "]
+table << [" jungah ahn ", " $500 "]
+
+puts table.render_with MyBorder
