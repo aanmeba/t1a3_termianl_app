@@ -13,3 +13,4 @@ gem "tty-prompt"
 gem "colorize"
 
 gem "artii"
+gem "tty-table", "~> 0.12.0"
