@@ -75,10 +75,11 @@ When the user enters invalid inputs, this app immediately displays a warning mes
 * RAM 4gb or higher
 * Ruby (preferably, version >= 2.7.0)
 * Ruby Gems
-    - [tty-prompt](https://github.com/piotrmurach/tty-prompt#25-yesno)
+    - [tty-prompt](https://github.com/piotrmurach/tty-prompt)
+    - [tty-table](https://github.com/piotrmurach/tty-table)
     - [colorize](https://github.com/fazibear/colorize)
     - [artii](https://github.com/miketierney/artii)
-    - [rspec](https://github.com/rspec/rspec-metagem) (optional)
+    - [rspec](https://github.com/rspec/rspec-metagem)
 
 ### How To Use
 
