@@ -46,6 +46,39 @@ This accepts the user input one by one user to manually share the amount. Since 
 
 When only one person is left after entering the amount for every other person, it automatically calculates the rest and allocates it to the last person, then it displays the result on the screen.
 
+## Testing
+
+### 1. Automated testing
+
+Using rspec, the Calculator class which contains three main features has been tested. Testing can be conducted by executing a script file `./testing.sh` in the terminal and the result is archived in the src/test-documentation folder.
+
+- Is it an instance of Calculator?
+- Does it have an array property?
+- Does it have an instance variable for bill?
+
+For .split_equally method,
+- Is it defined?
+- Does it return an array?
+
+For .pick_random_num method,
+- Is it defined?
+- Does it return an array?
+- Does it return an array of random numbers depending on the number of people?
+
+For .split_randomly method,
+- Is it defined?
+- Does it return an array?
+- Is it equal between the sum of the array and the bill amount?
+
+For .split_manually method,
+- Is it defined?
+
+### 2. Manual testing
+
+After creating a separate file for the manual test, it is to find out where the ZeroDivisionError triggers in .split_randomly method and how the border of tty-table for displaying works was tested. 
+
+![Manual Test Sheet](./docs/manual_test.png)
+
 ## User Interaction & Experience
 
 Typing '-help' or '-info' in the command line when executing this application displays further information on how to use it. Users can enter names and amounts following the instruction and then can select an option using the arrow keys.

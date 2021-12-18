@@ -2,9 +2,9 @@
 
 # Gems
 require 'tty-prompt'
+require 'tty-table'
 require 'colorize'
 require 'artii'
-require 'tty-table'
 
 # Import files
 require_relative './methods/Variables'
@@ -17,9 +17,6 @@ require_relative './command-line-arg'
 
 prompt = TTY::Prompt.new
 Arti = Artii::Base.new :font => 'slant'
-# table = TTY::Table.new(header: ["Name", "Amount"])
-# renderer = TTY::Table::Renderer::ASCII.new(table)
-
 
 title = "Split The Bills"
 name_array = []
