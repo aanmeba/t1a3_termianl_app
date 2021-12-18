@@ -1,5 +1,8 @@
-# Manual test for error handling in .split_randomly
-# Error: ZeroDivisionError in a specific situation
+# Manual tests for 
+# 1) error handling in .split_randomly
+#   Error: ZeroDivisionError in a specific situation
+# 2) tty-table gem
+#   to verify how the border works
 
 class Calculator
     attr_accessor :array
@@ -49,16 +52,7 @@ test_one = Calculator.new(["amy", "winehouse"], 10)
 # manual test - 1
 # pp test_one.split_randomly
 
-def string(array)
-    names = []
-    array.each { |name| names << name.split.map(&:capitalize!).join(' ') }
-    return names
-end
-
-# manual test - 2
-# pp string(["jungah ahn", "yejun park"])
-
-# manual test - 3 - tty-table
+# manual test - 2 - tty-table
 require 'colorize'
 require 'tty-table'
 table = TTY::Table.new(header: [" Name ", " Amount "])
