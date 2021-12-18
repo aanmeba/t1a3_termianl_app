@@ -28,7 +28,7 @@ describe 'Calculator' do
     end
 
     describe '.split_equally' do
-        it 'should be difined' do
+        it 'should be defined' do
             expect(defined? @test_name.split_equally).to eq("method")
         end
 
@@ -38,7 +38,7 @@ describe 'Calculator' do
     end
 
     describe '.pick_random_num' do
-        it 'should be difined' do
+        it 'should be defined' do
             expect(defined? @test_name.pick_random_num).to eq("method")
         end
 
@@ -52,7 +52,7 @@ describe 'Calculator' do
     end
 
     describe '.split_randomly' do
-        it 'should be difined' do
+        it 'should be defined' do
             expect(defined? @test_name.split_randomly).to eq("method")
         end
 
@@ -66,7 +66,7 @@ describe 'Calculator' do
     end
 
     describe '.split_manually' do
-        it 'should be difined' do
+        it 'should be defined' do
             expect(defined? @test_name.split_manually).to eq("method")
         end
     end
