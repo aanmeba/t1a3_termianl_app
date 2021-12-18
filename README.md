@@ -18,14 +18,14 @@ This program is for those who, especially Millennials, want to divide a group ex
 
 * Timeline
 
-| Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Control flow | | | | | | |
-| Unit test | Unit test | Unit test | Unit test | | |
-| | Main features | Main features | Main features | | |
-| | | | Improve UI & UX | | |
-| | | | | Refectoring | Refectoring | Refectoring |
-| | | | | Documentation | Documentation | Documentation |
+| Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 |
+| --- | --- | --- | --- | --- | --- |
+| Control flow | | | | | |
+| Unit test | Unit test | Unit test | Unit test | |
+| | Main features | Main features | Main features | |
+| | | | Improve UI & UX | |
+| | | | | Refectoring | Refectoring |
+| | | | | Documentation | Documentation |
 
 ## Features
 
