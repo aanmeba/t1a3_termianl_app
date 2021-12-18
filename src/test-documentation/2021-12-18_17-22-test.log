@@ -1,0 +1,23 @@
+
+Calculator
+  should be an instance of a Calculator
+  should have an array property
+  should have an instance variable for the size of an array
+  should have an instance variable for bill
+  .split_equally
+    should be defined
+    should return an array
+  .pick_random_num
+    should be defined
+    should return an array
+    should return an array of random numbers depending on the number of people
+  .split_randomly
+    should be defined
+    should return an array
+    should be equal between the sum of the array and the bill amount
+  .split_manually
+    should be defined
+
+Finished in 0.02678 seconds (files took 0.25507 seconds to load)
+13 examples, 0 failures
+
