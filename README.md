@@ -3,6 +3,7 @@
 ## Source Control Repository
 * Here's the 
 [repo](https://github.com/aanmeba/t1a3_termianl_app)
+* [Slideshow for presentation](https://www.canva.com/design/DAEyZ5I6nrs/G_Hv7Z0hTV3Xqrfck9QiSg/view?utm_content=DAEyZ5I6nrs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Software Development Plan
 
