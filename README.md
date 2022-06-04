@@ -1,4 +1,6 @@
-# T1A3 - Terminal Application
+# Split The Bill
+
+T1A3 - Terminal Application
 
 ## Source Control Repository
 * Here's the 
